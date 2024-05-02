@@ -1,0 +1,54 @@
+<?php if ($block->loggedIn() && !$block->checksRead()): ?>
+    <div style="display: none;" id='modal-notice' class="modal-notice">
+        <b><label>Title: </label></b><?php $block->showTitle(); ?><br>
+        <b><label>Description: </label></b><?php $block->showDescription(); ?>
+        <hr>
+        <input type="checkbox" name="read" id="read" value="1">Mark as read
+    </div>
+<?php endif; ?>
+
+<script>
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/modal',
+        'mage/storage'
+    ], function(
+        $,
+        modal,
+        storage
+    ) {
+        $(document).ready(function() {
+        var notice = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                title: $.mage.__('Notice For You'),
+                buttons: [{
+                    text: $.mage.__('Save'),
+                    class: 'continueBtn',
+                    click: function () {
+                        $('#modal-notice').modal("closeModal");
+                    }
+                }]
+            }; $('#modal-notice').modal(notice).modal("openModal");
+
+            var selectedOption = document.getElementById('read').value;
+
+            $("#read").click(function() {
+                storage.post(
+                    'notify/index/index',
+                    JSON.stringify({
+                        "field":'checkbox',
+                        "value": selectedOption
+                    }),
+                    true
+                    // return response controller file
+                ).done(function(response) {
+
+                }).fail(function(response) {
+                    alert('main Error occurred.');
+                });
+            });
+        }); 
+    });
+</script>

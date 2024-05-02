@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    <!-- parent add tag -->
+        <add id="Kitchen_Notification::notification" title="Notification" translate="title" module="Kitchen_Notification" sortOrder="10" dependsOnModule="Kitchen_Notification" resource="Kitchen_Notification::notification"/>
+
+    <!-- child add tag -->
+        <add id="Kitchen_Notification::notification_grid" title="Notification" translate="title" module="Kitchen_Notification" sortOrder="10" parent="Kitchen_Notification::notification" action="notify/Notification" dependsOnModule="Kitchen_Notification" resource="Kitchen_Notification::notification_grid"/>
+    </menu>
+
+</config>

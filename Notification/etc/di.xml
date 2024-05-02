@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="notification_page_listing_data_source" xsi:type="string">Kitchen\Notification\Model\ResourceModel\Notify\Grid\Collection</item>
+                <item name="notification_page_form_data_source" xsi:type="string">Kitchen\Notification\Model\ResourceModel\Notify\Grid\Collection</item>
+                <item name="notification_page_form_data_source" xsi:type="string">Kitchen\Notification\Model\ResourceModel\Notify\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Table is Customer -->
+    <virtualType name="Kitchen\Notification\Model\ResourceModel\Notify\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">kitchen_notice</argument>
+            <!-- to define tablename and id -->
+            <!-- give path upto .php file in below tag  -->
+            <argument name="resourceModel" xsi:type="string">Kitchen\Notification\Model\ResourceModel\Notify</argument>
+        </arguments>
+    </virtualType>
+</config>
